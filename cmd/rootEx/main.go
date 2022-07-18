@@ -8,6 +8,6 @@ import (
 
 func main() {
 	serv := myRootEx.NewRootEx()
-	serv.Start()
+	log.Fatal(serv.Start())
 	log.Println("Router initalising successfully. Ready to GO!")
 }

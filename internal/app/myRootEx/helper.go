@@ -19,25 +19,6 @@ var rootIn models.RootIn
 func (roo *RootEX) RootsOfQuadraticEquation() (*models.RootOut, error) {
 	var err error
 	/////
-	JsonRead()
-	/////
-	fmt.Println(rootIn)
-	d := rootIn.B*rootIn.B - 4*rootIn.A*rootIn.C
-	if (rootIn.A == 0 || rootIn.B == 0 && rootIn.C == 0) || (d == 0) {
-		roo.rOut.Nroots = 1
-	} else if (rootIn.B == 0 && rootIn.A/rootIn.C < 0) || (d < 0) {
-		roo.rOut.Nroots = 0
-	} else if (rootIn.B == 0 && rootIn.A/rootIn.C > 0) || (rootIn.C == 0) || (d < 0) {
-		roo.rOut.Nroots = 2
-	} else {
-		return nil, err
-	}
-	roo.rOut.A, roo.rOut.B, roo.rOut.C = rootIn.A, rootIn.B, rootIn.C
-
-	return roo.rOut, nil
-}
-
-func (roo *RootEX) JsonRead() {
 	jsonFile, err := os.Open("output.json")
 	if err != nil {
 		roo.l.Fatalln("Неможливо відкрити json файл")
@@ -55,4 +36,23 @@ func (roo *RootEX) JsonRead() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	/////
+	fmt.Println(rootIn)
+	d := rootIn.B*rootIn.B - 4*rootIn.A*rootIn.C
+	if (rootIn.A == 0 || rootIn.B == 0 && rootIn.C == 0) || (d == 0) {
+		roo.rOut.Nroots = 1
+	} else if (rootIn.B == 0 && rootIn.A/rootIn.C < 0) || (d < 0) {
+		roo.rOut.Nroots = 0
+	} else if (rootIn.B == 0 && rootIn.A/rootIn.C > 0) || (rootIn.C == 0) || (d < 0) {
+		roo.rOut.Nroots = 2
+	} else {
+		return nil, err
+	}
+	roo.rOut.A, roo.rOut.B, roo.rOut.C = rootIn.A, rootIn.B, rootIn.C
+
+	return roo.rOut, nil
+}
+
+func (roo *RootEX) LogPrintSuccesses() {
+	roo.l.Println("Router initalising successfully. Ready to GO!")
 }

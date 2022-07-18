@@ -49,6 +49,7 @@ func (roo *RootEX) Grab(w http.ResponseWriter, r *http.Request) {
 
 func (roo *RootEX) Solve(w http.ResponseWriter, r *http.Request) {
 	initHeader(w)
+
 	roo.l.Println("Tru the root of a quadratic equation")
 	rOut, err := roo.RootsOfQuadraticEquation()
 	fmt.Println("|||||||||||", rOut, "|||||||||||")

@@ -27,6 +27,7 @@ func NewRootEx() *RootEX {
 	}
 }
 
+//log.Println("Router initalising successfully. Ready to GO!")
 func (roo *RootEX) Start() error {
 	err := godotenv.Load()
 	if err != nil {
@@ -38,5 +39,6 @@ func (roo *RootEX) Start() error {
 	roo.l.Println("start server at port:", port)
 	//зконфыгуровано маршрутизатор
 	roo.resource()
+
 	return http.ListenAndServe(port, roo.router)
 }
